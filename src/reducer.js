@@ -27,6 +27,22 @@ const reducer = (state, action) => {
       };
     case HANDLE_SEARCH:
       return { ...state, isLoading: false, query: action.payLoad, page: 0 };
+    case HANDLE_PAGE:
+      if (action.payLoad === 'next') {
+        let nextPage = state.page + 1;
+        if (nextPage > state.nbPages - 1) {
+          nextPage = 0;
+        }
+        return { ...state, page: nextPage };
+      }
+      if (action.payLoad === 'prev') {
+        let prevPage = state.page - 1;
+        if (prevPage <= 0) {
+          prevPage = state.nbPages - 1;
+        }
+        return { ...state, page: prevPage };
+      }
+
     default:
       throw new Error(`No Matching '${action.type}' action type`);
   }
