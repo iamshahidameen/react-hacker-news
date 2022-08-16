@@ -41,9 +41,9 @@ const AppProvider = ({ children }) => {
   const removeStory = (id) => {
     dispatch({ type: REMOVE_STORY, payLoad: id });
     // console.log(id);
-    const newStory = state.hits.filter((hit) => hit.objectID !== id);
-    console.log(newStory);
-    state.hits = [...newStory];
+    // const newStory = state.hits.filter((hit) => hit.objectID !== id);
+    // console.log(newStory);
+    // state.hits = [...newStory];
   };
   useEffect(() => {
     fetchSTories(`${API_ENDPOINT}query=${state.query}&page=${state.page}`);
