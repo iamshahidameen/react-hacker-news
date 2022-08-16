@@ -45,11 +45,14 @@ const AppProvider = ({ children }) => {
     // console.log(newStory);
     // state.hits = [...newStory];
   };
+  const handleSearch = (query) => {
+    dispatch({ type: HANDLE_SEARCH, payLoad: query });
+  };
   useEffect(() => {
     fetchSTories(`${API_ENDPOINT}query=${state.query}&page=${state.page}`);
-  }, []);
+  }, [state.query]);
   return (
-    <AppContext.Provider value={{ ...state, removeStory }}>
+    <AppContext.Provider value={{ ...state, removeStory, handleSearch }}>
       {children}
     </AppContext.Provider>
   );

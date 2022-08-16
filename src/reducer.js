@@ -1,3 +1,4 @@
+import { act } from '@testing-library/react';
 import {
   SET_LOADING,
   SET_STORIES,
@@ -24,6 +25,8 @@ const reducer = (state, action) => {
         isLoading: false,
         hits: state.hits.filter((story) => story.objectID !== action.payLoad),
       };
+    case HANDLE_SEARCH:
+      return { ...state, isLoading: false, query: action.payLoad, page: 0 };
     default:
       throw new Error(`No Matching '${action.type}' action type`);
   }
